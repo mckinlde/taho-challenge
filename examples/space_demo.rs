@@ -9,7 +9,14 @@ fn main() {
     net.connect_bidirectional(a, b).unwrap();
     net.connect_bidirectional(b, c).unwrap();
 
-    let route = net.shortest_route(a, c).unwrap();
-    println!("Route: {:?}", route.locations.iter().map(|id| id.index()).collect::<Vec<_>>());
-    println!("Total distance: {}", route.total_distance);
+    match net.shortest_route(a, c) {
+        Some(route) => {
+            let ids: Vec<_> = route.locations.iter().map(|id| id.index()).collect();
+            println!("Route (by LocationId index): {:?}", ids);
+            println!("Total distance: {}", route.total_distance);
+        }
+        None => {
+            println!("No route found between {:?} and {:?}", a.index(), c.index());
+        }
+    }
 }

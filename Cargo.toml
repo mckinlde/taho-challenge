@@ -1,0 +1,8 @@
+[package]
+name = "taho_routes"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "taho_routes"
+path = "src/lib.rs"
